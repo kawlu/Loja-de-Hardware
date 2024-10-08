@@ -51,15 +51,14 @@ public class Compra {
             }
         });
         painel_principal.add(botao_finalizar);
-
-        // Exibe o painel com botões personalizados ("Cancelar" em vez de "OK")
+        
         Object[] opcoes = {"Cancelar"};
         int resultado = JOptionPane.showOptionDialog(null, painel_principal, "Finalização de Compra", 
                 JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, opcoes, opcoes[0]);
         
         if (resultado == JOptionPane.CLOSED_OPTION || resultado == 0) {
             JOptionPane.showMessageDialog(null, "Compra cancelada!", "Cancelamento", JOptionPane.INFORMATION_MESSAGE);
-            System.exit(0); // Fechar o programa após exibir a mensagem
+            System.exit(0); // Fecha o programa após exibir a mensagem
         }
     }
 
