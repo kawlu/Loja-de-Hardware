@@ -1,4 +1,6 @@
-import javax.swing.JOptionPane;
+package Loja;
+
+import javax.swing.*;
 
 public class Usuario {
     // Classe interna estática para armazenar os dados do Cliente
@@ -45,7 +47,7 @@ public class Usuario {
             JOptionPane.showMessageDialog(null, "Login realizado com sucesso!");
         } else {
             JOptionPane.showMessageDialog(null, "Usuário ou senha incorretos.");
-            escolher_op();
+            escolherOp();
         }
     }
 
@@ -67,14 +69,14 @@ public class Usuario {
                 logar();
                 break;
             case 1:
-                escolher_op();
+                escolherOp();
             break;
         
             default:
                 break;
         }
     }  
-    public static void escolher_op(){
+    public static void escolherOp(){
         String[] opcoes = {"Login", "Cadastrar", "VOLTAR"};
         int escolha = JOptionPane.showOptionDialog(null, "O que você deseja fazer?", "Escolha uma opção", 
             JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, opcoes, opcoes[0]);
@@ -97,6 +99,6 @@ public class Usuario {
         }
     }
     public static void main(String[] args) {
-        escolher_op();
+        escolherOp();
     }
 }
