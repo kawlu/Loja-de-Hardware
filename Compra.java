@@ -11,21 +11,24 @@ public class Compra {
     private JLabel labelResumoVenda, labelLoginVerificado, labelEndereco;
     private JTextField campoEndereco;
     private JButton botaoFinalizar;
-    private boolean loginVerificado = true; // Verifica o login, se estiver true vai prosseguir, se estiver false vai negar e pedir para que seja feito o login
+    private boolean loginVerificado;
 
     public Compra() {
-        criarPainel();
+        // Verifica se o login foi feito anteriormente
+        loginVerificado = Usuario.cliente.getNome() != null && Usuario.cliente.getSenha() != null;
+
+        criarPainel(); // Cria a interface de compra
     }
 
     public void criarPainel() {
         painelPrincipal = new JPanel();
         painelPrincipal.setLayout(new GridLayout(5, 1));
 
-        // Resumo venda
+        // Resumo da venda
         labelResumoVenda = new JLabel("Resumo da venda: Produto Abacate - R$ 1000000,00");
         painelPrincipal.add(labelResumoVenda);
 
-        // Verificação login
+        // Verificação de login
         labelLoginVerificado = new JLabel("Login Verificado: " + (loginVerificado ? "Sim" : "Não"));
         painelPrincipal.add(labelLoginVerificado);
 
@@ -41,21 +44,37 @@ public class Compra {
         botaoFinalizar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (loginVerificado) { 
+                if (loginVerificado) {
                     // Se o login estiver verificado, tenta finalizar a compra
                     validarEndereco();
                 } else {
-                    // Se o login não estiver verificado, direciona o usuário para a página de cadastro
-                    JOptionPane.showMessageDialog(null, "Login não verificado. Por favor, realize o cadastro ou login.", "Atenção", JOptionPane.WARNING_MESSAGE);
+                    // Se o login não estiver verificado, exibe a mensagem de alerta
+                    int resposta = JOptionPane.showConfirmDialog(null, "Login não verificado. Deseja realizar o login agora?", "Atenção", JOptionPane.OK_CANCEL_OPTION);
+                    
+                    if (resposta == JOptionPane.OK_OPTION) {
+                        // Redireciona para a tela de login/cadastro
+                        Usuario.escolherOp();
+                        
+                        // Atualiza a variável após a tentativa de login
+                        loginVerificado = Usuario.cliente.getNome() != null && Usuario.cliente.getSenha() != null;
+
+                        // Atualiza a label para refletir o status de login
+                        labelLoginVerificado.setText("Login Verificado: " + (loginVerificado ? "Sim" : "Não"));
+
+                        if (loginVerificado) {
+                            JOptionPane.showMessageDialog(null, "Login realizado com sucesso. Agora você pode finalizar a compra.");
+                        }
+                    }
                 }
             }
         });
         painelPrincipal.add(botaoFinalizar);
-        
+
+        // Mostra o painel de finalização de compra
         Object[] opcoes = {"Cancelar"};
         int resultado = JOptionPane.showOptionDialog(null, painelPrincipal, "Finalização de Compra", 
                 JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, opcoes, opcoes[0]);
-        
+
         if (resultado == JOptionPane.CLOSED_OPTION || resultado == 0) {
             JOptionPane.showMessageDialog(null, "Compra cancelada!", "Cancelamento", JOptionPane.INFORMATION_MESSAGE);
             System.exit(0); // Fecha o programa após exibir a mensagem
