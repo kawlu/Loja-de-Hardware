@@ -111,13 +111,18 @@ public class Catalogo {
                     "Selecione", JOptionPane.INFORMATION_MESSAGE);
             
             if(op != null && !"".equals(op)){
-                codigo = Integer.parseInt(op);
                 try{
+                    codigo = Integer.parseInt(op);
                     //Executa a função ExibirProduto e passa o item escolhido pelo usuário
                     ExibirProduto(codigo);
                 }catch(IndexOutOfBoundsException e){
                     //Ocorre quando o usuário digita um código de produto inválido
                     JOptionPane.showMessageDialog(null, "Opção inválida. Tente novamente.", "Erro", JOptionPane.ERROR_MESSAGE);
+                    op = "";
+                }catch(NumberFormatException e){
+                    //Ocorre quando o usuário digita algo que não seja um número
+                    JOptionPane.showMessageDialog(null, "Opção inválida. Tente novamente.", "Erro", JOptionPane.ERROR_MESSAGE);
+                    op = "";
                 }
             }
             else if("".equals(op)){
