@@ -7,6 +7,8 @@ import java.util.List;
 
 public class formCatalogo extends javax.swing.JFrame {
 
+    public static formCarrinho carrinhoAtual;
+    
     public formCatalogo() {
         initComponents();
     }
@@ -126,7 +128,7 @@ public class formCatalogo extends javax.swing.JFrame {
     }                                         
 
     private void CarrinhoBtnActionPerformed(java.awt.event.ActionEvent evt) {                                            
-        //ir para o carrinho
+        carrinhoAtual.setVisible(true);
         dispose();
     }                                           
 
@@ -142,6 +144,7 @@ public class formCatalogo extends javax.swing.JFrame {
     }
 
     public static void exibirProdutos(formCarrinho Carrinho){
+        carrinhoAtual = Carrinho;
         formCatalogo formCatalogo = new formCatalogo();
         ArrayList<String> itens = new ArrayList<String>();
         formCatalogo.ErroLabel.setVisible(false);
@@ -158,18 +161,13 @@ public class formCatalogo extends javax.swing.JFrame {
             @Override
             public void valueChanged(ListSelectionEvent e){
                 if (!e.getValueIsAdjusting()){
-                    if(produtoJaNoCarrinho(formCatalogo.ListaProdutos.getSelectedIndex(), Carrinho)){
-                        formCatalogo.ErroLabel.setVisible(true);
-                    }
-                    else{
-                        formCatalogo.dispose();
-                        formExibirProduto formExibirProduto = new formExibirProduto();
-                        formExibirProduto.setListaProdutos(formCatalogo.ListaProdutos.getSelectedIndex(), produtos);
-                        formExibirProduto.setCarrinho(Carrinho);
-                        formExibirProduto.exibirProduto();
-                        formExibirProduto.setVisible(true);
-                        formExibirProduto.setLocationRelativeTo(null);
-                    }
+                    formCatalogo.dispose();
+                    formExibirProduto formExibirProduto = new formExibirProduto();
+                    formExibirProduto.setListaProdutos(formCatalogo.ListaProdutos.getSelectedIndex(), produtos);
+                    formExibirProduto.setCarrinho(carrinhoAtual);
+                    formExibirProduto.exibirProduto();
+                    formExibirProduto.setVisible(true);
+                    formExibirProduto.setLocationRelativeTo(null);
                 }
             }
         });
