@@ -1,9 +1,7 @@
 package Compras;
 
-
-
 import Carrinho.formCarrinho;
-import Carrinho.Item;
+import Catalogo.Produto;
 import Usuario.Usuario;
 import javax.swing.*;
 import java.awt.*;
@@ -21,10 +19,9 @@ public class Compra {
 
     public Compra(formCarrinho carrinho) {
         this.carrinho = carrinho;
-        // Verifica se o login foi feito anteriormente
         loginVerificado = Usuario.cliente.getNome() != null && Usuario.cliente.getSenha() != null;
 
-        criarPainel(); // Cria a interface de compra
+        criarPainel();
     }
 
     public void criarPainel() {
@@ -32,7 +29,7 @@ public class Compra {
         painelPrincipal.setLayout(new GridLayout(5, 1));
 
         StringBuilder resumo = new StringBuilder("<html>Resumo da venda:<br>");
-        for (Item item : carrinho.getItensCarrinho()) {
+        for (Produto item : carrinho.getItensCarrinho()) {
             resumo.append("Produto: ").append(item.getNome()).append(", Quantidade: ").append(item.getQuantidade())
                     .append(", Valor: R$").append(item.calcularValorTotal()).append("<br>");
         }
