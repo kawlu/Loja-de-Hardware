@@ -34,13 +34,13 @@ public class formCompra extends javax.swing.JPanel {
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.setSize(800, 600);
 
-            formCarrinho carrinho = new formCarrinho(); // Certifique-se de que esta classe existe
+            formCarrinho carrinho = new formCarrinho();
             formCompra compra = new formCompra(carrinho);
 
             frame.add(compra);
             frame.setVisible(true);
         } catch (Exception e) {
-            e.printStackTrace(); // Exibe a pilha de erros no console
+            e.printStackTrace();
         }
     }
 
@@ -51,7 +51,7 @@ public class formCompra extends javax.swing.JPanel {
 
     private void preencherTabela() {
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-        model.setRowCount(0); // Limpa a tabela antes de preencher
+        model.setRowCount(0);
 
         for (Produto item : carrinho.getItensCarrinho()) {
             model.addRow(new Object[]{item.getNome(), item.getQuantidade(), item.calcularValorTotal()});
@@ -64,11 +64,11 @@ public class formCompra extends javax.swing.JPanel {
         } else {
             int resposta = JOptionPane.showConfirmDialog(this, "Deseja realizar o login agora?", "Atenção", JOptionPane.OK_CANCEL_OPTION);
             if (resposta == JOptionPane.OK_OPTION) {
-                Usuario.escolherOp(); // Método para redirecionar ao login
-                verificarLogin(); // Verifica o login novamente após a tentativa
+                Usuario.escolherOp(); // metodo para redirecionar ao login
+                verificarLogin(); // verifica o login novamente após a tentativa
                 if (loginVerificado) {
                     JOptionPane.showMessageDialog(this, "Login realizado com sucesso. Agora você pode finalizar a compra.");
-                    validarEndereco(); // Chama a validação do endereço após o login
+                    validarEndereco(); // vhama a validação do endereço dps do login
                 }
             }
         }
@@ -76,7 +76,7 @@ public class formCompra extends javax.swing.JPanel {
 
     private void validarEndereco() {
         String endereco = jTextField1.getText();
-        if (endereco.matches(".+\\d+")) { // Verifica se o endereço contém números
+        if (endereco.matches(".+\\d+")) { // verifica se o endereço contrm nimeros
             perguntarNovaCompra();
         } else {
             JOptionPane.showMessageDialog(this, "Endereço inválido! Insira um endereço no formato 'Rua, Número'.", "Erro", JOptionPane.ERROR_MESSAGE);
@@ -86,7 +86,7 @@ public class formCompra extends javax.swing.JPanel {
     private void perguntarNovaCompra() {
         int resposta = JOptionPane.showConfirmDialog(this, "Deseja realizar uma nova compra?", "Nova Compra", JOptionPane.YES_NO_OPTION);
         if (resposta == JOptionPane.YES_OPTION) {
-            jTextField1.setText(""); // Limpa o campo para uma nova compra
+            jTextField1.setText(""); // limpa o campo para uma nova compra
         } else {
             JOptionPane.showMessageDialog(this, "Compra finalizada! Obrigado!");
             System.exit(0); // Fecha o programa
