@@ -1,7 +1,6 @@
 package Catalogo;
 
 import Carrinho.formCarrinho;
-import Catalogo.Produto;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,7 +11,7 @@ public class formExibirProduto extends javax.swing.JFrame {
     }
 
     @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
 
         NomeLabel = new javax.swing.JLabel();
@@ -148,17 +147,17 @@ public class formExibirProduto extends javax.swing.JFrame {
         );
 
         pack();
-    }// </editor-fold>//GEN-END:initComponents
+    }// </editor-fold>                        
 
-    private void SairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SairMouseClicked
+    private void SairMouseClicked(java.awt.event.MouseEvent evt) {                                  
         System.exit(0);
-    }//GEN-LAST:event_SairMouseClicked
+    }                                 
 
-    private void SobreMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SobreMouseClicked
+    private void SobreMouseClicked(java.awt.event.MouseEvent evt) {                                   
         //Adicionar página de créditos/sobre/participantes do grupo
-    }//GEN-LAST:event_SobreMouseClicked
+    }                                  
 
-    private void AddCarrinhoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddCarrinhoBtnActionPerformed
+    private void AddCarrinhoBtnActionPerformed(java.awt.event.ActionEvent evt) {                                               
         if (produto.getEstoque() <= 0) {
                 ProdAddLabel.setText("Erro: Produto indisponível.");
                 ProdAddLabel.setVisible(true);
@@ -171,20 +170,31 @@ public class formExibirProduto extends javax.swing.JFrame {
             QuantidadeLabel.setText("Quantidade em estoque: " + produto.getEstoque());
         }
         else{
-            ProdAddLabel.setText("Erro: Produto Já no carrinho.");
-            ProdAddLabel.setVisible(true);
+            Produto prodAtual = new Produto(produto.getNome(), produto.getDescricao(), produto.getPreco(), 
+                                   produto.getEstoque(), 1, produto.getValorUnitario());;
+            List<Produto> itensCarrinho = carrinho.getItensCarrinho();
+            for(int i = 0; i < itensCarrinho.size(); i++){
+                if(itensCarrinho.get(i).getNome() == prodAtual.getNome()){
+                    itensCarrinho.get(i).setQuantidade(itensCarrinho.get(i).getQuantidade() + 1);
+                    carrinho.atualizarTabela();
+                    produto.setEstoque(produto.getEstoque() - 1);
+                    QuantidadeLabel.setText("Quantidade em estoque: " + produto.getEstoque());
+                    ProdAddLabel.setText("Produto adicionado novamente ao carrinho.");
+                    ProdAddLabel.setVisible(true);
+                }
+            }
         }
-    }//GEN-LAST:event_AddCarrinhoBtnActionPerformed
+    }                                              
 
-    private void VoltarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VoltarBtnActionPerformed
+    private void VoltarBtnActionPerformed(java.awt.event.ActionEvent evt) {                                          
         formCatalogo.exibirProdutos(carrinho);
         dispose();
-    }//GEN-LAST:event_VoltarBtnActionPerformed
+    }                                         
 
-    private void CarrinhoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CarrinhoBtnActionPerformed
+    private void CarrinhoBtnActionPerformed(java.awt.event.ActionEvent evt) {                                            
         carrinho.setVisible(true);
         dispose();
-    }//GEN-LAST:event_CarrinhoBtnActionPerformed
+    }                                           
 
     private static List<Produto> produtos = new ArrayList<>();
     private static Produto produto;
@@ -241,7 +251,7 @@ public class formExibirProduto extends javax.swing.JFrame {
         
     }
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
+    // Variables declaration - do not modify                     
     private javax.swing.JButton AddCarrinhoBtn;
     private javax.swing.JButton CarrinhoBtn;
     private javax.swing.JScrollPane DescScrollPane;
@@ -256,5 +266,5 @@ public class formExibirProduto extends javax.swing.JFrame {
     private javax.swing.JSeparator Separador2;
     private javax.swing.JMenu Sobre;
     private javax.swing.JButton VoltarBtn;
-    // End of variables declaration//GEN-END:variables
+    // End of variables declaration                   
 }
