@@ -2,18 +2,19 @@ package Catalogo;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import Carrinho.formCarrinho;
-import Catalogo.Produto;
 import java.util.ArrayList;
 import java.util.List;
 
 public class formCatalogo extends javax.swing.JFrame {
 
+    public static formCarrinho carrinhoAtual;
+    
     public formCatalogo() {
         initComponents();
     }
 
     @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
 
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -23,6 +24,7 @@ public class formCatalogo extends javax.swing.JFrame {
         ListaProdutos = new javax.swing.JList<>();
         VoltarBtn = new javax.swing.JButton();
         ErroLabel = new javax.swing.JLabel();
+        CarrinhoBtn = new javax.swing.JButton();
         MenuBar = new javax.swing.JMenuBar();
         Sair = new javax.swing.JMenu();
         Sobre = new javax.swing.JMenu();
@@ -48,6 +50,14 @@ public class formCatalogo extends javax.swing.JFrame {
 
         ErroLabel.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
         ErroLabel.setText("Erro: Produto selecionado já está no carrinho.");
+
+        CarrinhoBtn.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
+        CarrinhoBtn.setText("Carrinho");
+        CarrinhoBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CarrinhoBtnActionPerformed(evt);
+            }
+        });
 
         Sair.setText("Sair");
         Sair.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -78,7 +88,10 @@ public class formCatalogo extends javax.swing.JFrame {
                     .addComponent(PainelCatalogo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 641, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(VoltarBtn)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(VoltarBtn)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(CarrinhoBtn))
                             .addComponent(ErroLabel))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
@@ -89,28 +102,35 @@ public class formCatalogo extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(BemVindo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(PainelCatalogo, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
+                .addComponent(PainelCatalogo, javax.swing.GroupLayout.DEFAULT_SIZE, 317, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(ErroLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(VoltarBtn)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(VoltarBtn)
+                    .addComponent(CarrinhoBtn))
                 .addContainerGap())
         );
 
         pack();
-    }// </editor-fold>//GEN-END:initComponents
+    }// </editor-fold>                        
 
-    private void SairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SairMouseClicked
+    private void SairMouseClicked(java.awt.event.MouseEvent evt) {                                  
         System.exit(0);
-    }//GEN-LAST:event_SairMouseClicked
+    }                                 
 
-    private void SobreMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SobreMouseClicked
+    private void SobreMouseClicked(java.awt.event.MouseEvent evt) {                                   
         //Adicionar página de créditos/sobre/participantes do grupo
-    }//GEN-LAST:event_SobreMouseClicked
+    }                                  
 
-    private void VoltarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VoltarBtnActionPerformed
+    private void VoltarBtnActionPerformed(java.awt.event.ActionEvent evt) {                                          
         dispose();
-    }//GEN-LAST:event_VoltarBtnActionPerformed
+    }                                         
+
+    private void CarrinhoBtnActionPerformed(java.awt.event.ActionEvent evt) {                                            
+        carrinhoAtual.setVisible(true);
+        dispose();
+    }                                           
 
     private static List<Produto> produtos = new ArrayList<>();
 
@@ -124,6 +144,7 @@ public class formCatalogo extends javax.swing.JFrame {
     }
 
     public static void exibirProdutos(formCarrinho Carrinho){
+        carrinhoAtual = Carrinho;
         formCatalogo formCatalogo = new formCatalogo();
         ArrayList<String> itens = new ArrayList<String>();
         formCatalogo.ErroLabel.setVisible(false);
@@ -140,18 +161,13 @@ public class formCatalogo extends javax.swing.JFrame {
             @Override
             public void valueChanged(ListSelectionEvent e){
                 if (!e.getValueIsAdjusting()){
-                    if(produtoJaNoCarrinho(formCatalogo.ListaProdutos.getSelectedIndex(), Carrinho)){
-                        formCatalogo.ErroLabel.setVisible(true);
-                    }
-                    else{
-                        formCatalogo.dispose();
-                        formExibirProduto formExibirProduto = new formExibirProduto();
-                        formExibirProduto.setListaProdutos(formCatalogo.ListaProdutos.getSelectedIndex(), produtos);
-                        formExibirProduto.setCarrinho(Carrinho);
-                        formExibirProduto.exibirProduto();
-                        formExibirProduto.setVisible(true);
-                        formExibirProduto.setLocationRelativeTo(null);
-                    }
+                    formCatalogo.dispose();
+                    formExibirProduto formExibirProduto = new formExibirProduto();
+                    formExibirProduto.setListaProdutos(formCatalogo.ListaProdutos.getSelectedIndex(), produtos);
+                    formExibirProduto.setCarrinho(carrinhoAtual);
+                    formExibirProduto.exibirProduto();
+                    formExibirProduto.setVisible(true);
+                    formExibirProduto.setLocationRelativeTo(null);
                 }
             }
         });
@@ -209,8 +225,9 @@ public class formCatalogo extends javax.swing.JFrame {
 
     
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
+    // Variables declaration - do not modify                     
     private javax.swing.JLabel BemVindo;
+    private javax.swing.JButton CarrinhoBtn;
     private javax.swing.JLabel ErroLabel;
     private javax.swing.JList<String> ListaProdutos;
     private javax.swing.JMenuBar MenuBar;
@@ -220,5 +237,5 @@ public class formCatalogo extends javax.swing.JFrame {
     private javax.swing.JButton VoltarBtn;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextPane jTextPane2;
-    // End of variables declaration//GEN-END:variables
+    // End of variables declaration                   
 }
