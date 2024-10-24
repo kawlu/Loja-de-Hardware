@@ -4,7 +4,7 @@ import javax.swing.table.DefaultTableModel;
 import Catalogo.Produto;
 import carrinho.formCarrinho;
 import Usuario.Usuario;
-import Usuario.Frm_Login;
+import Usuario.Frm_Menu;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -67,7 +67,8 @@ public class formCompra extends javax.swing.JPanel {
         } else {
             int resposta = JOptionPane.showConfirmDialog(this, "Deseja realizar o login agora?", "Atenção", JOptionPane.OK_CANCEL_OPTION);
             if (resposta == JOptionPane.OK_OPTION) {
-                Frm_Login(); // metodo para redirecionar ao login
+                Frm_Menu menu = new Frm_Menu();
+                menu.setVisible(true); // metodo para redirecionar ao login
                 verificarLogin(); // verifica o login novamente após a tentativa
                 if (loginVerificado) {
                     JOptionPane.showMessageDialog(this, "Login realizado com sucesso. Agora você pode finalizar a compra.");
