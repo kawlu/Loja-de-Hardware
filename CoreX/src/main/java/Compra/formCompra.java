@@ -67,7 +67,7 @@ public class formCompra extends javax.swing.JPanel {
         } else {
             int resposta = JOptionPane.showConfirmDialog(this, "Deseja realizar o login agora?", "Atenção", JOptionPane.OK_CANCEL_OPTION);
             if (resposta == JOptionPane.OK_OPTION) {
-                new Frm_Login(); // metodo para redirecionar ao login
+                Frm_Login(); // metodo para redirecionar ao login
                 verificarLogin(); // verifica o login novamente após a tentativa
                 if (loginVerificado) {
                     JOptionPane.showMessageDialog(this, "Login realizado com sucesso. Agora você pode finalizar a compra.");
@@ -97,7 +97,7 @@ public class formCompra extends javax.swing.JPanel {
     }
 
     @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
@@ -215,20 +215,20 @@ public class formCompra extends javax.swing.JPanel {
                     .addComponent(jButton2))
                 .addContainerGap())
         );
-    }// </editor-fold>//GEN-END:initComponents
+    }// </editor-fold>                        
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {                                            
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }                                           
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {                                         
         // TODO add your handling code here:
         JOptionPane.showMessageDialog(this, "Compra cancelada!");
         // Fecha o programa
     System.exit(0);
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }                                        
     
-    // Variables declaration - do not modify//GEN-BEGIN:variables
+    // Variables declaration - do not modify                     
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
@@ -239,5 +239,9 @@ public class formCompra extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
-    // End of variables declaration//GEN-END:variables
+    // End of variables declaration                   
+
+    private void Frm_Login() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }
