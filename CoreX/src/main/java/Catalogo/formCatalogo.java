@@ -4,6 +4,7 @@ import javax.swing.event.ListSelectionListener;
 import carrinho.formCarrinho;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -172,7 +173,43 @@ public class formCatalogo extends javax.swing.JFrame {
         }
     }
     
-    public static List<Produto> lerProdutos(){
+    public static void setEstoqueProdutoEspecifico(int codigo, int estoqueNovo){
+        try{
+            String linha;
+            BufferedWriter writer = new BufferedWriter(new FileWriter("ProdutosTemp.txt"));
+            BufferedReader reader = new BufferedReader(new FileReader("Produtos.txt"));
+            while((linha = reader.readLine()) != null){
+                String[] campos = linha.split("_");
+                int index = Integer.parseInt(campos[0]);
+                if(index == codigo){
+                    String nome = campos[1];
+                    String descricao = campos[2];
+                    float preco = Float.parseFloat(campos[3]);
+                    //int estoque = Integer.parseInt(campos[4]);
+                    Produto produtoEncontrado = new Produto(nome, descricao, preco, estoqueNovo);
+                    writer.write((codigo)+"_"+produtoEncontrado.getNome()+"_"+produtoEncontrado.getDescricao()+"_"
+                        +produtoEncontrado.getPreco()+"_"+produtoEncontrado.getEstoque()+"\n");
+                    
+                    //System.out.println("\n\nProduto Encontrado: "+nome+"\nEstoque Antigo: "+estoque+"\nEstoque Novo: "+(estoque-1)+"\n\n");
+                }
+                else{
+                    //System.out.println("\n"+linha+"\n");
+                    writer.write(linha+"\n");
+                }
+            }
+            writer.close();
+            reader.close();
+            
+            File ProdutosOld = new File("Produtos.txt");
+            File ProdutosNew = new File("ProdutosTemp.txt");
+            ProdutosOld.delete();
+            ProdutosNew.renameTo(new File("Produtos.txt"));
+        }catch(Exception e){
+            System.out.println(e);
+        }
+    }
+    
+    public static List<Produto> getProdutos(){
         List<Produto> produtos = new ArrayList<>();
         try{
             BufferedReader reader = new BufferedReader(new FileReader("Produtos.txt"));
@@ -186,8 +223,6 @@ public class formCatalogo extends javax.swing.JFrame {
                 float preco = Float.parseFloat(campos[3]);
                 int estoque = Integer.parseInt(campos[4]);
                 produtos.add(new Produto(nome, descricao, preco, estoque));
-                System.out.println("\nCódigo: " +index+ "\nNome: " +nome+ "\nDescrição: " +descricao+ 
-                        "\nPreço: " +preco+ "\nEstoque: " +estoque +"\n");
             }
             reader.close();
         }catch(IOException e){
@@ -196,7 +231,7 @@ public class formCatalogo extends javax.swing.JFrame {
         return produtos;
     }
     
-    public static Produto lerProdutoEspecifico(int codigo){
+    public static Produto getProdutoEspecifico(int codigo){
         try{
             BufferedReader reader = new BufferedReader(new FileReader("Produtos.txt"));
             String linha;
@@ -210,8 +245,6 @@ public class formCatalogo extends javax.swing.JFrame {
                 int estoque = Integer.parseInt(campos[4]);
                 
                 if(index == codigo){
-                    System.out.println("\nCódigo: " +index+ "\nNome: " +nome+ "\nDescrição: " +descricao+ 
-                        "\nPreço: " +preco+ "\nEstoque: " +estoque +"\n");
                     Produto produtoEncontrado = new Produto(nome, descricao, preco, estoque);
                     reader.close();
                     return produtoEncontrado;
@@ -230,10 +263,10 @@ public class formCatalogo extends javax.swing.JFrame {
         ArrayList<String> itens = new ArrayList<String>();
         formCatalogo.ErroLabel.setVisible(false);
         
-        for (int i = 0; i < lerProdutos().size(); i++){
+        for (int i = 0; i < getProdutos().size(); i++){
             StringBuilder ProdutoEmLista = new StringBuilder();
-            ProdutoEmLista.append(i + 1).append(" ").append(lerProdutoEspecifico(i+1).getNome()).append("\n").append("Preço: R$")
-                    .append(lerProdutoEspecifico(i+1).getPreco());
+            ProdutoEmLista.append(i + 1).append(" ").append(getProdutoEspecifico(i+1).getNome()).append("\n").append("Preço: R$")
+                    .append(getProdutoEspecifico(i+1).getPreco());
             
             itens.add(ProdutoEmLista.toString());
         }
@@ -244,7 +277,7 @@ public class formCatalogo extends javax.swing.JFrame {
                 if (!e.getValueIsAdjusting()){
                     formCatalogo.dispose();
                     formExibirProduto formExibirProduto = new formExibirProduto();
-                    formExibirProduto.setListaProdutos(formCatalogo.ListaProdutos.getSelectedIndex(), lerProdutos());
+                    formExibirProduto.setListaProdutos(formCatalogo.ListaProdutos.getSelectedIndex(), getProdutos());
                     formExibirProduto.setCarrinho(carrinhoAtual);
                     formExibirProduto.exibirProduto();
                     formExibirProduto.setVisible(true);
@@ -296,7 +329,7 @@ public class formCatalogo extends javax.swing.JFrame {
     }
 
     public static boolean produtoJaNoCarrinho(int codigo, formCarrinho carrinho) {
-        Produto produto = lerProdutoEspecifico(codigo+1);
+        Produto produto = getProdutoEspecifico(codigo);
         for (Produto item : carrinho.getItensCarrinho()) {
             if (item.getNome().equals(produto.getNome())) {
                 return true; // O produto já está no carrinho
