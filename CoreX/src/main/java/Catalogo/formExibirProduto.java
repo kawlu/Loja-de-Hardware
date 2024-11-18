@@ -161,26 +161,31 @@ public class formExibirProduto extends javax.swing.JFrame {
         if (produto.getEstoque() <= 0) {
                 ProdAddLabel.setText("Erro: Produto indisponível.");
                 ProdAddLabel.setVisible(true);
-        }else if(!formCatalogo.produtoJaNoCarrinho(indexProduto,carrinho)){
+                System.out.println("Produto Indisponível");
+        }else if(!formCatalogo.produtoJaNoCarrinho(indexProduto, carrinho)){
             produto.setEstoque(produto.getEstoque() - 1);
-             Produto item = new Produto(produto.getNome(), produto.getDescricao(), produto.getPreco(), 
-                                   produto.getEstoque(), 1, produto.getValorUnitario());
+            formCatalogo.setEstoqueProdutoEspecifico(indexProduto, produto.getEstoque());
+            Produto item = new Produto(produto.getNome(), produto.getDescricao(), produto.getPreco(), 
+                                produto.getEstoque(), 1, produto.getValorUnitario());
             carrinho.adicionarItem(item); // Adiciona o item ao carrinho
             ProdAddLabel.setVisible(true);
             QuantidadeLabel.setText("Quantidade em estoque: " + produto.getEstoque());
+            System.out.println("Produto adicionado ao carrinho");
         }
         else{
             Produto prodAtual = new Produto(produto.getNome(), produto.getDescricao(), produto.getPreco(), 
                                    produto.getEstoque(), 1, produto.getValorUnitario());;
             List<Produto> itensCarrinho = carrinho.getItensCarrinho();
             for(int i = 0; i < itensCarrinho.size(); i++){
-                if(itensCarrinho.get(i).getNome() == prodAtual.getNome()){
+                if(itensCarrinho.get(i).getNome().equals(prodAtual.getNome())){
                     itensCarrinho.get(i).setQuantidade(itensCarrinho.get(i).getQuantidade() + 1);
                     carrinho.atualizarTabela();
                     produto.setEstoque(produto.getEstoque() - 1);
+                    formCatalogo.setEstoqueProdutoEspecifico(indexProduto, produto.getEstoque());
                     QuantidadeLabel.setText("Quantidade em estoque: " + produto.getEstoque());
                     ProdAddLabel.setText("Produto adicionado novamente ao carrinho.");
                     ProdAddLabel.setVisible(true);
+                    System.out.println("Produto adicionado novamente ao carrinho");
                 }
             }
         }
@@ -202,8 +207,9 @@ public class formExibirProduto extends javax.swing.JFrame {
     private static int indexProduto;
     
     public void setListaProdutos(int codigo, List<Produto> listaProdutos){
+        codigo++;
         produtos = listaProdutos;
-        produto = produtos.get(codigo);
+        produto = formCatalogo.getProdutoEspecifico(codigo);
         indexProduto = codigo;
     }
     
