@@ -1,26 +1,33 @@
-package compra;
+package Compra;
 
-import javax.swing.table.DefaultTableModel;
 import Catalogo.Produto;
 import carrinho.formCarrinho;
-import Usuario.Usuario;
-import Usuario.Frm_Menu;
-import javax.swing.*;
+import Usuario.Cliente;
+import Usuario.Frm_Login;
+
+import javax.swing.JOptionPane;
+import javax.swing.JFrame;
+import javax.swing.table.DefaultTableModel;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+
+
+
+
 public class formCompra extends javax.swing.JPanel {
-    private boolean loginVerificado;
     private formCarrinho carrinho;
+    
 
     public formCompra(formCarrinho carrinho) {
         this.carrinho = carrinho;
         initComponents();
-        verificarLogin();
         preencherTabela();
 
         jButton1.addActionListener(new ActionListener() {
             @Override
+           
             public void actionPerformed(ActionEvent e) {
                 finalizarCompra();
             }
@@ -28,6 +35,7 @@ public class formCompra extends javax.swing.JPanel {
     }
 
     public static void main(String[] args) {
+        
         try {
             JFrame frame = new JFrame("Finalização de Compra");
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -44,13 +52,7 @@ public class formCompra extends javax.swing.JPanel {
             e.printStackTrace();
         }
     }
-    
-    public static Usuario.Cliente cliente = new Usuario.Cliente();
 
-    private void verificarLogin() {
-        loginVerificado = cliente.getNome() != null && cliente.getSenha() != null;
-        jLabel3.setText(loginVerificado ? "Sim" : "Não (Faça Login)");
-    }
 
     private void preencherTabela() {
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
@@ -62,21 +64,18 @@ public class formCompra extends javax.swing.JPanel {
     }
 
     private void finalizarCompra() {
-        if (loginVerificado) {
-            validarEndereco();
-        } else {
-            int resposta = JOptionPane.showConfirmDialog(this, "Deseja realizar o login agora?", "Atenção", JOptionPane.OK_CANCEL_OPTION);
+        
+        validarEndereco();
+        
+        if (Cliente.login_verificado == null || Cliente.login_verificado == false) {
+            int resposta = JOptionPane.showConfirmDialog(this, "Você precisa estar logado para finalizar a compra. Deseja realizar o login agora?", "Atenção", JOptionPane.OK_CANCEL_OPTION);
             if (resposta == JOptionPane.OK_OPTION) {
-                Frm_Menu menu = new Frm_Menu();
-                menu.setVisible(true); // metodo para redirecionar ao login
-                verificarLogin(); // verifica o login novamente após a tentativa
-                if (loginVerificado) {
-                    JOptionPane.showMessageDialog(this, "Login realizado com sucesso. Agora você pode finalizar a compra.");
-                    validarEndereco(); // vhama a validação do endereço dps do login
-                }
+                Frm_Login login = new Frm_Login();
+                login.setVisible(true);
             }
         }
     }
+
 
     private void validarEndereco() {
         String endereco = jTextField1.getText();
