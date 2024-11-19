@@ -1,23 +1,36 @@
 package br.website.corex;
 
+import Usuario.Cliente;
+import Usuario.Frm_Login;
+import Usuario.Frm_Cadastrar;
 import carrinho.formCarrinho;
 import Catalogo.formCatalogo;
+import Catalogo.formExibirProduto;
+import javax.swing.JMenu;
 import javax.swing.JOptionPane;
 
 public class Main extends javax.swing.JFrame {
 
     private formCatalogo catalogo;
     private formCarrinho carrinho;
-    private sobrePanel sobre;  // Adiciona o painel sobre
+    private sobrePanel sobre;  
+    private Frm_Login login;
+    private Frm_Cadastrar cadastrar;
+    
 
     public Main() {
         initComponents();
         setResizable(false);
         catalogo = new formCatalogo();
         carrinho = new formCarrinho();
-        sobre = new sobrePanel();  // Inicializa o painel sobre
+        sobre = new sobrePanel();
+        login = new Frm_Login();  // Passa referência para controle após login
+        cadastrar = new Frm_Cadastrar();
         catalogo.construirListaProdutos();
+        catalogo.construirListaProdutosTxt();
+         // Configura menus baseados no estado inicial de login
     }
+
 
     @SuppressWarnings("unchecked")
     private void initComponents() {
@@ -25,8 +38,10 @@ public class Main extends javax.swing.JFrame {
         verCatalogo = new javax.swing.JButton();
         verCarrinho = new javax.swing.JButton();
         sair = new javax.swing.JButton();
-        barraMenuSobre = new javax.swing.JMenuBar();
+        barraMenu = new javax.swing.JMenuBar();
         btnSobre = new javax.swing.JMenu();
+        btnLogin = new javax.swing.JMenu();
+        btnCadastrar = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("CoreX - Menu");
@@ -61,12 +76,28 @@ public class Main extends javax.swing.JFrame {
         btnSobre.setText("Sobre");
         btnSobre.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnSobreMouseClicked(evt);  // Evento ao clicar no "Sobre"
+                btnSobreMouseClicked(evt);
             }
         });
-        barraMenuSobre.add(btnSobre);
+        barraMenu.add(btnSobre);
 
-        setJMenuBar(barraMenuSobre);
+        btnLogin.setText("Login");
+        btnLogin.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnLoginMouseClicked(evt);
+            }
+        });
+        barraMenu.add(btnLogin);
+
+        btnCadastrar.setText("Cadastrar");
+        btnCadastrar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnCadastrarMouseClicked(evt);
+            }
+        });
+        barraMenu.add(btnCadastrar);
+
+        setJMenuBar(barraMenu);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -103,7 +134,7 @@ public class Main extends javax.swing.JFrame {
     }
 
     private void verCatalogoActionPerformed(java.awt.event.ActionEvent evt) {
-        formCatalogo.exibirProdutos(carrinho);
+        catalogo.exibirProdutos(carrinho);
     }
 
     private void verCarrinhoActionPerformed(java.awt.event.ActionEvent evt) {
@@ -111,25 +142,46 @@ public class Main extends javax.swing.JFrame {
     }
 
     private void sairActionPerformed(java.awt.event.ActionEvent evt) {
-        JOptionPane.showMessageDialog(null, "Obrigado por usar o sistema!");
-        System.exit(0);
+        if (Usuario.Cliente.login_verificado == true){
+            Usuario.Cliente.login_verificado = false;
+            JOptionPane.showMessageDialog(null, "Obrigado por usar o sistema!");
+        }
     }
 
     private void btnSobreMouseClicked(java.awt.event.MouseEvent evt) {
-        sobre.setVisible(true);  // Abre a janela "Sobre"
+        sobre.setVisible(true);
     }
+
+    private void btnLoginMouseClicked(java.awt.event.MouseEvent evt) {
+        if (Usuario.Cliente.login_verificado == null || Usuario.Cliente.login_verificado == false){
+            login.setVisible(true);
+        }
+        
+        
+    }
+
+    private void btnCadastrarMouseClicked(java.awt.event.MouseEvent evt) {
+         if (Usuario.Cliente.login_verificado == null || Usuario.Cliente.login_verificado == false){
+            cadastrar.setVisible(true);
+        }
+        
+    }
+
 
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Main().setVisible(true);
+                
             }
         });
     }
 
     // Variables declaration
-    private javax.swing.JMenuBar barraMenuSobre;
+    private javax.swing.JMenuBar barraMenu;
     private javax.swing.JMenu btnSobre;
+    private javax.swing.JMenu btnLogin;
+    private javax.swing.JMenu btnCadastrar;
     private javax.swing.JButton sair;
     private javax.swing.JLabel textoTitulo;
     private javax.swing.JButton verCarrinho;
