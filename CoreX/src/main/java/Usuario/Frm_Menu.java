@@ -5,10 +5,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 
-import Usuario.Usuario;
-import Usuario.Usuario.Cliente;
+import Usuario.Cliente;
 import Usuario.Frm_Login;
-import Usuario.Usuario.Cliente;
 import Usuario.Frm_Cadastrar;
 
 public class Frm_Menu extends javax.swing.JFrame {
@@ -20,7 +18,7 @@ public class Frm_Menu extends javax.swing.JFrame {
     }
     
     @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
 
         jMenu1 = new javax.swing.JMenu();
@@ -125,21 +123,24 @@ public class Frm_Menu extends javax.swing.JFrame {
         );
 
         pack();
-    }// </editor-fold>//GEN-END:initComponents
+    }// </editor-fold>                        
 
-    private void btnLoginUsuarioOPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginUsuarioOPActionPerformed
+    private void btnLoginUsuarioOPActionPerformed(java.awt.event.ActionEvent evt) {                                                  
+        Usuario.Cliente.login_verificado = false;
         Frm_Login login = new Frm_Login();
         login.setVisible(true);
-    }//GEN-LAST:event_btnLoginUsuarioOPActionPerformed
+        dispose();
+    }                                                 
 
-    private void btnCadastroUsuarioOPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastroUsuarioOPActionPerformed
+    private void btnCadastroUsuarioOPActionPerformed(java.awt.event.ActionEvent evt) {                                                     
         Frm_Cadastrar cadastro = new Frm_Cadastrar();
         cadastro.setVisible(true);
-    }//GEN-LAST:event_btnCadastroUsuarioOPActionPerformed
-
-    private void btnVoltarUsuarioOPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarUsuarioOPActionPerformed
         dispose();
-    }//GEN-LAST:event_btnVoltarUsuarioOPActionPerformed
+    }                                                    
+
+    private void btnVoltarUsuarioOPActionPerformed(java.awt.event.ActionEvent evt) {                                                   
+        dispose();
+    }                                                  
 
     /**
      * @param args the command line arguments
@@ -178,11 +179,11 @@ public class Frm_Menu extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
             new Frm_Menu().setVisible(true);
-            Usuario.main(args);
+            Cliente.main(args);
         });
     }
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
+    // Variables declaration - do not modify                     
     private javax.swing.JButton btnCadastroUsuarioOP;
     private javax.swing.JButton btnLoginUsuarioOP;
     private javax.swing.JButton btnVoltarUsuarioOP;
@@ -193,6 +194,6 @@ public class Frm_Menu extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JPanel jPanel1;
-    // End of variables declaration//GEN-END:variables
+    // End of variables declaration                   
 
 }
