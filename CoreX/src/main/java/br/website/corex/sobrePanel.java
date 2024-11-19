@@ -55,7 +55,7 @@ public class sobrePanel extends javax.swing.JFrame {
         integrante5.setText("Yasmin Cibreiros Chagas da Silva");
 
         versao1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        versao1.setText("Versão: 1.3");
+        versao1.setText("Versão: 1.4");
 
         buttonOK.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         buttonOK.setText("OK");
