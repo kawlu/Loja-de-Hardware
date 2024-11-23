@@ -135,6 +135,7 @@ public class Main extends javax.swing.JFrame {
 
     private void verCatalogoActionPerformed(java.awt.event.ActionEvent evt) {
         catalogo.exibirProdutos(carrinho);
+        catalogo.setLogin(login, cadastrar);
     }
 
     private void verCarrinhoActionPerformed(java.awt.event.ActionEvent evt) {

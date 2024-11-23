@@ -1,5 +1,8 @@
 package Catalogo;
 
+import Usuario.Frm_Cadastrar;
+import Usuario.Frm_Login;
+import br.website.corex.sobrePanel;
 import carrinho.formCarrinho;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,9 +31,10 @@ public class formExibirProduto extends javax.swing.JFrame {
         MenuBar = new javax.swing.JMenuBar();
         Sair = new javax.swing.JMenu();
         Sobre = new javax.swing.JMenu();
+        Login = new javax.swing.JMenu();
+        Cadastrar = new javax.swing.JMenu();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setResizable(false);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         NomeLabel.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
         NomeLabel.setText("Nome:");
@@ -77,6 +81,7 @@ public class formExibirProduto extends javax.swing.JFrame {
         });
 
         Sair.setText("Sair");
+        Sair.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         Sair.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 SairMouseClicked(evt);
@@ -85,12 +90,31 @@ public class formExibirProduto extends javax.swing.JFrame {
         MenuBar.add(Sair);
 
         Sobre.setText("Sobre");
+        Sobre.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         Sobre.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 SobreMouseClicked(evt);
             }
         });
         MenuBar.add(Sobre);
+
+        Login.setText("Login");
+        Login.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        Login.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                LoginMouseClicked(evt);
+            }
+        });
+        MenuBar.add(Login);
+
+        Cadastrar.setText("Cadastrar");
+        Cadastrar.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        Cadastrar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CadastrarMouseClicked(evt);
+            }
+        });
+        MenuBar.add(Cadastrar);
 
         setJMenuBar(MenuBar);
 
@@ -138,7 +162,7 @@ public class formExibirProduto extends javax.swing.JFrame {
                 .addComponent(QuantidadeLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(ProdAddLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(AddCarrinhoBtn)
                     .addComponent(VoltarBtn)
@@ -148,14 +172,6 @@ public class formExibirProduto extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>                        
-
-    private void SairMouseClicked(java.awt.event.MouseEvent evt) {                                  
-        System.exit(0);
-    }                                 
-
-    private void SobreMouseClicked(java.awt.event.MouseEvent evt) {                                   
-        //Adicionar página de créditos/sobre/participantes do grupo
-    }                                  
 
     private void AddCarrinhoBtnActionPerformed(java.awt.event.ActionEvent evt) {                                               
         if (produto.getEstoque() <= 0) {
@@ -201,10 +217,33 @@ public class formExibirProduto extends javax.swing.JFrame {
         dispose();
     }                                           
 
+    private void SairMouseClicked(java.awt.event.MouseEvent evt) {                                  
+        System.exit(0);
+    }                                 
+
+    private void SobreMouseClicked(java.awt.event.MouseEvent evt) {                                   
+        sobre.setVisible(true);
+    }                                  
+
+    private void LoginMouseClicked(java.awt.event.MouseEvent evt) {                                   
+        if (Usuario.Cliente.login_verificado == null || Usuario.Cliente.login_verificado == false){
+            login.setVisible(true);
+        }
+    }                                  
+
+    private void CadastrarMouseClicked(java.awt.event.MouseEvent evt) {                                       
+        if (Usuario.Cliente.login_verificado == null || Usuario.Cliente.login_verificado == false){
+            cadastrar.setVisible(true);
+        }
+    }                                      
+
     private static List<Produto> produtos = new ArrayList<>();
     private static Produto produto;
     private static formCarrinho carrinho;
     private static int indexProduto;
+    public static sobrePanel sobre = new sobrePanel();
+    public static Frm_Login login;
+    public static Frm_Cadastrar cadastrar;
     
     public void setListaProdutos(int codigo, List<Produto> listaProdutos){
         codigo++;
@@ -226,9 +265,13 @@ public class formExibirProduto extends javax.swing.JFrame {
         QuantidadeLabel.setText("Quantidade em estoque: " + produto.getEstoque());
     }
     
+    public static void setLogin(Frm_Login Login, Frm_Cadastrar Cadastrar){
+        login = Login;
+        cadastrar = Cadastrar;
+    }
     
     public static void main(String args[]) {
-        
+        /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
@@ -250,18 +293,22 @@ public class formExibirProduto extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(formExibirProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        formExibirProduto form = new formExibirProduto();
-        form.setVisible(true);
-        form.setLocationRelativeTo(null);
+        //</editor-fold>
 
-        
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new formExibirProduto().setVisible(true);
+            }
+        });
     }
 
     // Variables declaration - do not modify                     
     private javax.swing.JButton AddCarrinhoBtn;
+    private javax.swing.JMenu Cadastrar;
     private javax.swing.JButton CarrinhoBtn;
     private javax.swing.JScrollPane DescScrollPane;
     private javax.swing.JTextArea DescText;
+    private javax.swing.JMenu Login;
     private javax.swing.JMenuBar MenuBar;
     private javax.swing.JLabel NomeLabel;
     private javax.swing.JLabel PrecoLabel;
