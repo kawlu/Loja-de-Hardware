@@ -2,6 +2,9 @@ package Catalogo;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import carrinho.formCarrinho;
+import Usuario.Frm_Login;
+import Usuario.Frm_Cadastrar;
+import br.website.corex.sobrePanel;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -13,18 +16,19 @@ import java.util.List;
 
 public class formCatalogo extends javax.swing.JFrame {
 
+    public static sobrePanel sobre = new sobrePanel();
     public static formCarrinho carrinhoAtual;
+    public static Frm_Login login;
+    public static Frm_Cadastrar cadastrar;
     
     public formCatalogo() {
         initComponents();
     }
 
     @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">                                                
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
 
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTextPane2 = new javax.swing.JTextPane();
         BemVindo = new javax.swing.JLabel();
         PainelCatalogo = new javax.swing.JScrollPane();
         ListaProdutos = new javax.swing.JList<>();
@@ -34,10 +38,11 @@ public class formCatalogo extends javax.swing.JFrame {
         MenuBar = new javax.swing.JMenuBar();
         Sair = new javax.swing.JMenu();
         Sobre = new javax.swing.JMenu();
-
-        jScrollPane2.setViewportView(jTextPane2);
+        Login = new javax.swing.JMenu();
+        Cadastrar = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("CoreX - Catálogo");
         setResizable(false);
 
         BemVindo.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
@@ -66,6 +71,7 @@ public class formCatalogo extends javax.swing.JFrame {
         });
 
         Sair.setText("Sair");
+        Sair.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         Sair.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 SairMouseClicked(evt);
@@ -74,12 +80,31 @@ public class formCatalogo extends javax.swing.JFrame {
         MenuBar.add(Sair);
 
         Sobre.setText("Sobre");
+        Sobre.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         Sobre.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 SobreMouseClicked(evt);
             }
         });
         MenuBar.add(Sobre);
+
+        Login.setText("Login");
+        Login.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        Login.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                LoginMouseClicked(evt);
+            }
+        });
+        MenuBar.add(Login);
+
+        Cadastrar.setText("Cadastrar");
+        Cadastrar.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        Cadastrar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CadastrarMouseClicked(evt);
+            }
+        });
+        MenuBar.add(Cadastrar);
 
         setJMenuBar(MenuBar);
 
@@ -96,7 +121,7 @@ public class formCatalogo extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(VoltarBtn)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(CarrinhoBtn))
                             .addComponent(ErroLabel))
                         .addGap(0, 0, Short.MAX_VALUE)))
@@ -108,8 +133,8 @@ public class formCatalogo extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(BemVindo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(PainelCatalogo, javax.swing.GroupLayout.DEFAULT_SIZE, 317, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(PainelCatalogo, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(ErroLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -119,27 +144,39 @@ public class formCatalogo extends javax.swing.JFrame {
         );
 
         pack();
-    }// </editor-fold>                                              
+    }// </editor-fold>                        
+
+    private void VoltarBtnActionPerformed(java.awt.event.ActionEvent evt) {                                          
+        dispose();
+    }                                         
 
     private void SairMouseClicked(java.awt.event.MouseEvent evt) {                                  
         System.exit(0);
     }                                 
 
     private void SobreMouseClicked(java.awt.event.MouseEvent evt) {                                   
-        //Adicionar página de créditos/sobre/participantes do grupo
+        sobre.setVisible(true);
     }                                  
-
-    private void VoltarBtnActionPerformed(java.awt.event.ActionEvent evt) {                                          
-        dispose();
-    }                                         
 
     private void CarrinhoBtnActionPerformed(java.awt.event.ActionEvent evt) {                                            
         carrinhoAtual.setVisible(true);
         dispose();
     }                                           
 
-    private static List<Produto> produtos = new ArrayList<>();
+    private void LoginMouseClicked(java.awt.event.MouseEvent evt) {                                   
+        if (Usuario.Cliente.login_verificado == null || Usuario.Cliente.login_verificado == false){
+            login.setVisible(true);
+        }
+    }                                  
 
+    private void CadastrarMouseClicked(java.awt.event.MouseEvent evt) {                                       
+        if (Usuario.Cliente.login_verificado == null || Usuario.Cliente.login_verificado == false){
+            cadastrar.setVisible(true);
+        }
+    }                                      
+
+    private static List<Produto> produtos = new ArrayList<>();
+    
     public static void construirListaProdutos() {
         produtos.add(new Produto("Processador Intel i3-13100F", "Processador de décima-terceira geração, com soquete LGA 1700, 4 núcleos, 8 threads e clock de 3.4GHz.", 599.99f, 90));
         produtos.add(new Produto("Processador Intel i7-12700K", "Processador de alto desempenho com soquete LGA 1700, 12 núcleos, 20 threads, vídeo integrado e clock de 3.6GHz.", 1699.99f, 30));
@@ -256,7 +293,12 @@ public class formCatalogo extends javax.swing.JFrame {
         }
         return null;
     }
-
+    
+    public static void setLogin(Frm_Login Login, Frm_Cadastrar Cadastrar){
+        login = Login;
+        cadastrar = Cadastrar;
+    }
+    
     public static void exibirProdutos(formCarrinho Carrinho){
         carrinhoAtual = Carrinho;
         formCatalogo formCatalogo = new formCatalogo();
@@ -279,6 +321,7 @@ public class formCatalogo extends javax.swing.JFrame {
                     formExibirProduto formExibirProduto = new formExibirProduto();
                     formExibirProduto.setListaProdutos(formCatalogo.ListaProdutos.getSelectedIndex(), getProdutos());
                     formExibirProduto.setCarrinho(carrinhoAtual);
+                    formExibirProduto.setLogin(login, cadastrar);
                     formExibirProduto.exibirProduto();
                     formExibirProduto.setVisible(true);
                     formExibirProduto.setLocationRelativeTo(null);
@@ -296,7 +339,7 @@ public class formCatalogo extends javax.swing.JFrame {
     }
     
     public static void main(String args[]) {
-        
+        /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
@@ -318,10 +361,7 @@ public class formCatalogo extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(formCatalogo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        
+
         construirListaProdutos();
         construirListaProdutosTxt();
         formCarrinho carrinho = new formCarrinho();
@@ -338,19 +378,17 @@ public class formCatalogo extends javax.swing.JFrame {
         return false; // O produto não está no carrinho
     }
 
-    
-
     // Variables declaration - do not modify                     
     private javax.swing.JLabel BemVindo;
+    private javax.swing.JMenu Cadastrar;
     private javax.swing.JButton CarrinhoBtn;
     private javax.swing.JLabel ErroLabel;
     private javax.swing.JList<String> ListaProdutos;
+    private javax.swing.JMenu Login;
     private javax.swing.JMenuBar MenuBar;
     private javax.swing.JScrollPane PainelCatalogo;
     private javax.swing.JMenu Sair;
     private javax.swing.JMenu Sobre;
     private javax.swing.JButton VoltarBtn;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextPane jTextPane2;
     // End of variables declaration                   
 }
