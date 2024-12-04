@@ -1,0 +1,16 @@
+1_Processador Intel i3-13100F_Processador de décima-terceira geração, com soquete LGA 1700, 4 núcleos, 8 threads e clock de 3.4GHz._599.99_90_Intel-I7.png
+2_Processador Intel i7-12700K_Processador de alto desempenho com soquete LGA 1700, 12 núcleos, 20 threads, vídeo integrado e clock de 3.6GHz._1699.99_30_Intel-I7.png
+3_Memória RAM Kingston FURY Beast 32GB_Módulo único de memória RAM para desktop com capacidade de 32GB 3200MT/s DDR4 CL16._599.99_2_Intel-I7.png
+4_Memória RAM XPG Gammix 16GB_Módulo único de memória RAM com capacidade de 16GB 3200MHz DDR4 CL16._299.99_120_Intel-I7.png
+5_GPU Sapphire Pulse AMD RADEON RX 7900 XT_Placa de vídeo de alto desempenho projetada para jogos, contando com 20GB de memória virtual GDDR6._5882.99_16_Intel-I7.png
+6_GPU Nvidia RTX 3060 12GB_Placa de vídeo poderosa com capacidade de 12GB de VRAM e funcionalidade Ray Tracing._1639.99_750_Intel-I7.png
+7_SSD Sandisk Plus 1TB_SSD para desktop, modelo SATA de 2,5 polegadas, com capacidade de 1TB_359.89_60_Intel-I7.png
+8_SSD Kingston NV2 1TB_SSD para desktop, modelo NVMe M.2 com capacidade de 1TB, leitura de 3500MB/s e gravação até 2100MB/s._412.9_300_Intel-I7.png
+9_HDD Seagate Barracuda Compute 4TB_Hard Drive interno de alta capacidade para desktop. Conta com 4TB de capacidade e formato SATA._719.0_599_Intel-I7.png
+10_HDD Seagate Barracuda 500GB_Hard Drive interno para desktop, com 500GB de capacidade e formato SATA._110.0_20_Intel-I7.png
+11_Fonte Corsair ATX 750W_Fonte de alta qualidade, com 750W, certificado 80 plus bronze, e modelo ATX. Cabo de força incluso._646.9_100_Intel-I7.png
+12_Fonte Mancer Thunder 500W_Fonte Modelo ATX com 500W e certificado 80 plus bronze. Cabo de força incluso._234.99_200_Intel-I7.png
+13_Placa Mãe AsRock B660M Phantom Gaming 4_Placa mãe modelo B660m microatx, soquete LGA 1700, 4 slots de memória RAM DDR4, suporte para SSDs M.2, wi-fi e bluetooth._730.0_15_Intel-I7.png
+14_Placa Mãe Asus Tuf Gaming A520M-Plus_Placa mãe micro atx, suporte para M.2, soquete AM4, e 4 slots de memória RAM DDR4._599.99_68_Intel-I7.png
+15_Air Cooler Gamer Rise Mode Storm 8 Black_Air Cooler para processadores AMD/Intel, com ventoinhas de 120mm._129.99_50_Intel-I7.png
+16_Cooler Fan C3Tech F7-100BK 1200RPM_Ventoinha para gabinetes desktop, com rolamento FDB 12v, tamanho 12x12x2,5cm e velocidade 1200RPM. Sem leds._30.99_140_Intel-I7.png
