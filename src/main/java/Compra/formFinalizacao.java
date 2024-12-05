@@ -164,6 +164,10 @@ public class formFinalizacao extends javax.swing.JFrame {
         lblValor.setText("Valor Total: " + (String.format("R$ %.2f", valorTotal)));
     }
     
+    public void setCarrinho(formCarrinho carrinho) {
+        this.carrinho = carrinho;
+    }
+    
     public void mudarEstoque(){
         try{
             BufferedReader reader = new BufferedReader(new FileReader("Produtos.txt"));

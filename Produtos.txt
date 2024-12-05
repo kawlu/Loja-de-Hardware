@@ -1,8 +1,8 @@
 1_Processador Intel i3-13100F_Processador de décima-terceira geração, com soquete LGA 1700, 4 núcleos, 8 threads e clock de 3.4GHz._599.99_90_Intel-I7.png
 2_Processador Intel i7-12700K_Processador de alto desempenho com soquete LGA 1700, 12 núcleos, 20 threads, vídeo integrado e clock de 3.6GHz._1699.99_30_Intel-I7.png
 3_Memória RAM Kingston FURY Beast 32GB_Módulo único de memória RAM para desktop com capacidade de 32GB 3200MT/s DDR4 CL16._599.99_2_Intel-I7.png
-4_Memória RAM XPG Gammix 16GB_Módulo único de memória RAM com capacidade de 16GB 3200MHz DDR4 CL16._299.99_120_Intel-I7.png
-5_GPU Sapphire Pulse AMD RADEON RX 7900 XT_Placa de vídeo de alto desempenho projetada para jogos, contando com 20GB de memória virtual GDDR6._5882.99_16_Intel-I7.png
+4_Memória RAM XPG Gammix 16GB_Módulo único de memória RAM com capacidade de 16GB 3200MHz DDR4 CL16._299.99_118_Intel-I7.png
+5_GPU Sapphire Pulse AMD RADEON RX 7900 XT_Placa de vídeo de alto desempenho projetada para jogos, contando com 20GB de memória virtual GDDR6._5882.99_15_Intel-I7.png
 6_GPU Nvidia RTX 3060 12GB_Placa de vídeo poderosa com capacidade de 12GB de VRAM e funcionalidade Ray Tracing._1639.99_750_Intel-I7.png
 7_SSD Sandisk Plus 1TB_SSD para desktop, modelo SATA de 2,5 polegadas, com capacidade de 1TB_359.89_60_Intel-I7.png
 8_SSD Kingston NV2 1TB_SSD para desktop, modelo NVMe M.2 com capacidade de 1TB, leitura de 3500MB/s e gravação até 2100MB/s._412.9_300_Intel-I7.png

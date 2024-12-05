@@ -204,7 +204,7 @@ public class formCartao extends javax.swing.JFrame {
 
         jLabel9.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(232, 221, 203));
-        jLabel9.setText("(YYYY)");
+        jLabel9.setText("(YY)");
 
         jLabel10.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(232, 221, 203));
@@ -408,6 +408,17 @@ public class formCartao extends javax.swing.JFrame {
                     break;
                 }  
 
+                if (ano.isEmpty()) {
+                    JOptionPane.showMessageDialog(rootPane, "O campo Ano é obrigatório.", "Erro", JOptionPane.WARNING_MESSAGE);
+                    pagpreenchida = false;
+                    break;
+                }
+                else if(!ano.matches(anoRegex)){
+                    JOptionPane.showMessageDialog(rootPane, "Por favor insira um ano válido.", "Erro", JOptionPane.WARNING_MESSAGE);
+                    pagpreenchida = false;
+                    break;
+                }
+                                
                 if (cvv.isEmpty()) {
                     JOptionPane.showMessageDialog(rootPane, "O campo CVV é obrigatório.", "Erro", JOptionPane.WARNING_MESSAGE);
                     pagpreenchida = false;
@@ -432,6 +443,7 @@ public class formCartao extends javax.swing.JFrame {
                 Cliente.salvarCartaoCliente(cpfCliente, senhaCliente, cartao, nome, mes, ano, cvv);
             }
             formFinalizacao formFinalizacao = new formFinalizacao();
+            formFinalizacao.setCarrinho(carrinho);
             formFinalizacao.setValor(carrinho.valorTotalPub);
             formFinalizacao.mudarEstoque();
             formFinalizacao.setVisible(true);
