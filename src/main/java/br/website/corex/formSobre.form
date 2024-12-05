@@ -31,7 +31,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="0" pref="6" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="20" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -54,35 +54,20 @@
               </Group>
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="desenvolvidoPor1" min="-2" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="1" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="integrante4" min="-2" max="-2" attributes="0"/>
-                                  <Component id="integrante5" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                      <Component id="integrante3" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="integrante2" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Component id="integrante1" alignment="0" min="-2" pref="356" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="230" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" attributes="0">
-                              <Component id="desenvolvidoPor" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="210" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                  </Group>
-              </Group>
-              <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="1" attributes="0">
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Component id="integrante6" min="-2" max="-2" attributes="0"/>
-                      <Component id="buttonOK" min="-2" pref="229" max="-2" attributes="0"/>
+                      <Component id="integrante4" min="-2" max="-2" attributes="0"/>
+                      <Component id="integrante5" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                          <Component id="integrante3" alignment="0" max="32767" attributes="0"/>
+                          <Component id="integrante2" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Component id="integrante1" alignment="0" min="-2" pref="356" max="-2" attributes="0"/>
+                      <Component id="desenvolvidoPor1" min="-2" max="-2" attributes="0"/>
+                      <Component id="desenvolvidoPor" max="32767" attributes="0"/>
+                      <Component id="buttonOK" alignment="0" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="297" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="210" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -92,24 +77,24 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="nomeSite" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
-                  <Component id="desenvolvidoPor" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Component id="desenvolvidoPor" min="-2" pref="56" max="-2" attributes="0"/>
+                  <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                   <Component id="integrante1" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                   <Component id="integrante2" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                   <Component id="integrante3" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                   <Component id="integrante4" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                   <Component id="integrante5" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                   <Component id="desenvolvidoPor1" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                   <Component id="integrante6" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="24" max="32767" attributes="0"/>
+                  <EmptySpace pref="62" max="32767" attributes="0"/>
                   <Component id="buttonOK" min="-2" pref="51" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="67" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -212,12 +197,12 @@
         <Component class="javax.swing.JLabel" name="desenvolvidoPor1">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Arial" size="48" style="1"/>
+              <Font name="Arial" size="36" style="1"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="cb" green="dd" red="e8" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Orientador:"/>
+            <Property name="text" type="java.lang.String" value="Professor orientador:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="integrante6">
